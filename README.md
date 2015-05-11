@@ -57,5 +57,9 @@ organized/efficient.  As such here is the stack I am going to use:
 
 The sample application that I will be building will be an equipment inventory system.
 
+While there might be many different users for such a system, I am only going to focus on those users who must carry
+out the inventory in the field.  I am only going to focus on 3 contexts for these users: at the office with full
+network access, in the field with network access and in the field disconnected.
+
 ## Phases
 
