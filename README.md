@@ -79,6 +79,8 @@ Mobile/Both online and off:
 * Delete recors
 
 ## Phases
+0. Install and set up tools
+   a. npm init to set up package.json
 1. Set up api endpoints:
    a. Search
    b. List multiple records

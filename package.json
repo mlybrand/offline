@@ -1,0 +1,27 @@
+{
+  "name": "offline",
+  "version": "1.0.0",
+  "description": "Example application to demonstrate the approach of developing an application that uses HTML5 features to provide utility both online and off.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlybrand/offline.git"
+  },
+  "keywords": [
+    "html5",
+    "offline",
+    "node",
+    "express",
+    "local",
+    "storage"
+  ],
+  "author": "Mark Lybrand [ mlybrand@gmail.com ]",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlybrand/offline/issues"
+  },
+  "homepage": "https://github.com/mlybrand/offline"
+}
