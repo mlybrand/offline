@@ -85,17 +85,17 @@ Mobile/Both online and off:
     * Update .gitignore to ignore .idea folder
     * clone repo via WebStorm
 2. Install and set up tools
-   a. npm init to set up package.json
+    * npm init to set up package.json
 3. Online User Specifications:
-   a. User accesses site with no parameters.
-      i.  When user accesses site, he should see a list of available records, with paging limiting X per page.
-      ii. When user accesses site, he should see a search box with a dropdown to search by barcode number,
+    * User accesses site with no parameters.
+       * When user accesses site, he should see a list of available records, with paging limiting X per page.
+       * When user accesses site, he should see a search box with a dropdown to search by barcode number,
    item name/description, or location. Selection defaults to item name/description.
 4. Set up api endpoints:
-   a. Search
-   b. List multiple records
-   c. Read one record
-   d. Create record
-   e. Update record
-   f. Delete record
-   * there will also be more hooks for the notification process... more later
+    * Search
+    * List multiple records
+    * Read one record
+    * Create record
+    * Update record
+    * Delete record
+    * there will also be more hooks for the notification process... more later
