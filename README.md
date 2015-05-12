@@ -58,8 +58,32 @@ organized/efficient.  As such here is the stack I am going to use:
 The sample application that I will be building will be an equipment inventory system.
 
 While there might be many different users for such a system, I am only going to focus on those users who must carry
-out the inventory in the field.  I am only going to focus on 3 contexts for these users: at the office with full
-network access, in the field with network access and in the field disconnected.
+out the inventory in the field.  I am only going to focus on 2 contexts for these users: in the field with network
+access and in the field disconnected.
+
+What should the user be able to do in each context?
+
+Mobile/Online:
+* Search database for records matching inventory item
+* Preload records for matching inventory items
+* Sync changes from last offline session
+* Recieve notification of changes made by other connected users
+
+Mobile/Offline:
+* Search local data for records matching inventory item
+
+Mobile/Both online and off:
+* Read records
+* Create new records
+* Update records
+* Delete recors
 
 ## Phases
-
+1. Set up api endpoints:
+   a. Search
+   b. List multiple records
+   c. Read one record
+   d. Create record
+   e. Update record
+   f. Delete record
+   * there will also be more hooks for the notification process... more later
