@@ -79,19 +79,19 @@ Mobile/Both online and off:
 * Delete recors
 
 ## Phases
--1. How did I get here?
+1. How did I get here?
     a. Set up a github repo to hold my code.
     b. Add .gitignore and readme
     c. Update .gitignore to ignore .idea folder
     d. clone repo via WebStorm
-0. Install and set up tools
+2. Install and set up tools
    a. npm init to set up package.json
-1. Online User Specifications:
+3. Online User Specifications:
    a. User accesses site with no parameters.
       i.  When user accesses site, he should see a list of available records, with paging limiting X per page.
       ii. When user accesses site, he should see a search box with a dropdown to search by barcode number,
    item name/description, or location. Selection defaults to item name/description.
-2. Set up api endpoints:
+4. Set up api endpoints:
    a. Search
    b. List multiple records
    c. Read one record
