@@ -80,10 +80,10 @@ Mobile/Both online and off:
 
 ## Phases
 1. How did I get here?
-    a. Set up a github repo to hold my code.
-    b. Add .gitignore and readme
-    c. Update .gitignore to ignore .idea folder
-    d. clone repo via WebStorm
+    * Set up a github repo to hold my code.
+    * Add .gitignore and readme
+    * Update .gitignore to ignore .idea folder
+    * clone repo via WebStorm
 2. Install and set up tools
    a. npm init to set up package.json
 3. Online User Specifications:
