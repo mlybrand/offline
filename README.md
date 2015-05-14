@@ -89,12 +89,14 @@ Mobile/Both online and off:
     * need grunt for automation
     * added jshint
     * added mocha and chai
-    
 3. Online User Specifications:
     * User accesses site with no parameters.
        * When user accesses site, he should see a list of available records, with paging limiting X per page.
        * When user accesses site, he should see a search box with a dropdown to search by barcode number,
    item name/description, or location. Selection defaults to item name/description.
+    * I need to firm up these specifications.
+    * Then I need to do a basic wireframe.
+    * Then I will convert the specifications into tests.
 4. Set up api endpoints:
     * Search
     * List multiple records
