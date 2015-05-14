@@ -87,6 +87,9 @@ Mobile/Both online and off:
 2. Install and set up tools
     * npm init to set up package.json
     * need grunt for automation
+    * added jshint
+    * added mocha and chai
+    
 3. Online User Specifications:
     * User accesses site with no parameters.
        * When user accesses site, he should see a list of available records, with paging limiting X per page.
