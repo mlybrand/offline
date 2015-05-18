@@ -89,14 +89,29 @@ Mobile/Both online and off:
     * need grunt for automation
     * added jshint
     * added mocha and chai
+    * added express for a basic web server and mvc app and zombie.js to test against the server
 3. Online User Specifications:
-    * User accesses site with no parameters.
-       * When user accesses site, he should see a list of available records, with paging limiting X per page.
-       * When user accesses site, he should see a search box with a dropdown to search by barcode number,
-   item name/description, or location. Selection defaults to item name/description.
-    * I need to firm up these specifications.
-    * Then I need to do a basic wireframe.
-    * Then I will convert the specifications into tests.
+    * Read all
+        * default view
+        * GET "/" -> "/items"
+        * Given a user is doing inventory, when they go to the main page, then they are presented with a list of items"
+            * page should have a list of items
+            * items listed should have a name
+            * items listed should have a location
+                * locations should have a latitude
+                * locations should have a longitude
+            * items listed should have an id number
+            * items listed should have a rating
+    * Read
+        * GET "/items/123"
+    * Create
+        * (form) GET "/items/create"
+        * (action) POST "/items/create"
+    * Update
+        * (form) GET "/items/123/edit"
+        * (action) POST "/items/123/edit"
+    * Delete
+        * (action) POST "/items/123/delete"
 4. Set up api endpoints:
     * Search
     * List multiple records
