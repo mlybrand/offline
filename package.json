@@ -4,7 +4,7 @@
   "description": "Example application to demonstrate the approach of developing an application that uses HTML5 features to provide utility both online and off.",
   "main": "app.js",
   "scripts": {
-    "start": "node lib/app",
+    "start": "nodemon server",
     "test": "mocha test",
     "watch": "mocha test -w"
   },
@@ -35,6 +35,7 @@
     "grunt-mocha-test": "^0.12.7",
     "grunt-npm-install": "^0.2.0",
     "mocha": "^2.2.4",
+    "nodemon": "^1.3.7",
     "zombie": "^3.x"
   },
   "dependencies": {
