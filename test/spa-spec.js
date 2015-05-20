@@ -23,7 +23,11 @@ describe.only("SPA", function() {
         expect(browser.text('#header .navbar-brand')).to.equal('Offline Inventory');
     });
 
-    it("should have an area for the list of available inventory items");
+    it("should have an area for the list of available inventory items", function() {
+        expect(browser.queryAll('#inventory')).to.have.length(1);
+        expect(browser.text('#inventory .panel-title')).to.equal('Inventory');
+    });
+
     it("should have an area for the selected inventory item");
     it("should have a footer with copyright information");
 });
