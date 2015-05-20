@@ -20,7 +20,7 @@ describe.only("SPA", function() {
 
     it("should have a header section with the site title", function() {
         expect(browser.queryAll('#header')).to.have.length(1);
-        expect(browser.text('#header .logo')).to.equal('Offline Inventory');
+        expect(browser.text('#header .navbar-brand')).to.equal('Offline Inventory');
     });
 
     it("should have an area for the list of available inventory items");
