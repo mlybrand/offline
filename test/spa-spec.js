@@ -28,7 +28,10 @@ describe("SPA", function() {
         expect(browser.text('#inventory .panel-title')).to.equal('Inventory');
     });
 
-    it("should have an area for the selected inventory item");
+    it("should have an area for the selected inventory item", function() {
+        expect(browser.queryAll('#active-item')).to.have.length(1);
+    });
+
     it("should have a footer with copyright information");
 });
 
