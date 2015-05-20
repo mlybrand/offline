@@ -2,7 +2,7 @@ var expect = require('chai').expect,
     Browser = require('zombie'),
     app = require('../lib/app');
 
-describe.only("SPA", function() {
+describe("SPA", function() {
     var server,
         browser = new Browser();
 
