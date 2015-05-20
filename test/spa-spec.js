@@ -32,7 +32,10 @@ describe("SPA", function() {
         expect(browser.queryAll('#active-item')).to.have.length(1);
     });
 
-    it("should have a footer with copyright information");
+    it("should have a footer with copyright information", function() {
+        expect(browser.queryAll('footer')).to.have.length(1);
+        expect(browser.text('footer p')).to.equal('© 2015 Mark Lybrand');
+    });
 });
 
 //describe.only("Default View (Read All)", function() {
