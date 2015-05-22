@@ -44,7 +44,13 @@ describe("Inventory Section", function() {
         });
 
         describe("Each Item ID", function() {
-            it("should be a seven-digit number");
+            it("should be a seven-digit number", function() {
+                var items = browser.queryAll("#inventory table tbody tr");
+                items.forEach(function(item) {
+                    expect(browser.text("td.id", item)).to.match(/^\d{7}$/);
+                });
+            });
+
             it("should be a hyperlink");
             it("should link to a function to call the detail with itself");
         });
