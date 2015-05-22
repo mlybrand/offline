@@ -1,8 +1,9 @@
 var expect = require('chai').expect,
-    Browser = require('zombie'),
-    app = require('../lib/app'),
-    port = 3001,
-    url = "http://localhost:" + port;
+    config = require('./integration-test-config'),
+    Browser = config.Browser,
+    app = config.app,
+    port = config.port,
+    url = config.url;
 
 describe("SPA", function() {
     var server,
