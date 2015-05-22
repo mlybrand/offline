@@ -62,12 +62,19 @@ describe("Inventory Section", function() {
             });
         });
         describe("Each Rating", function() {
-            it("should be a number between 1 and 10");
-            it("should be expressed to no more than 3 decimal places");
+            it("should be a number between 1 and 10", function() {
+                items.forEach(function(item) {
+                    expect(browser.text("td.rating", item)).to.be.within(1, 10);
+                });
+            });
         });
 
         describe("Each Name", function() {
-            it("should not be empty");
+            it("should not be empty", function() {
+                items.forEach(function(item) {
+                    expect(browser.text("td.name", item)).not.to.be.empty;
+                });
+            });
         });
     });
 });
