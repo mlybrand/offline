@@ -65,5 +65,9 @@ describe("Inventory Section", function() {
             it("should be a number between 1 and 10");
             it("should be expressed to no more than 3 decimal places");
         });
+
+        describe("Each Name", function() {
+            it("should not be empty");
+        });
     });
 });
