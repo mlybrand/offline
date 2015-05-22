@@ -34,8 +34,13 @@ describe("Inventory Section", function() {
     });
 
     describe("Each Inventory Item", function() {
+        var items;
+
+        beforeEach(function() {
+            items = browser.queryAll("#inventory table tbody tr");
+        });
+
         it("should have an ID, a name and a rating", function() {
-            var items = browser.queryAll("#inventory table tbody tr");
             items.forEach(function(item) {
                 expect(browser.queryAll(".id", item)).to.have.length(1);
                 expect(browser.queryAll(".name", item)).to.have.length(1);
@@ -45,13 +50,13 @@ describe("Inventory Section", function() {
 
         describe("Each Item ID", function() {
             it("should be a seven-digit number", function() {
-                var items = browser.queryAll("#inventory table tbody tr");
                 items.forEach(function(item) {
                     expect(browser.text("td.id", item)).to.match(/^\d{7}$/);
                 });
             });
 
             it("should be a hyperlink");
+
             it("should link to a function to call the detail with itself");
         });
         describe("Each Rating", function() {
