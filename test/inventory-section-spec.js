@@ -60,8 +60,6 @@ describe("Inventory Section", function() {
                     expect(browser.queryAll("td.id a", item)).to.have.length(1);
                 });
             });
-
-            it("should link to a function to call the detail with itself");
         });
         describe("Each Rating", function() {
             it("should be a number between 1 and 10");
