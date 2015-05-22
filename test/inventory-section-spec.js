@@ -20,7 +20,13 @@ describe("Inventory Section", function() {
         return browser.visit(url);
     });
 
-    it("should have headers for ID, name and rating");
+    it("should have headers for ID, name and rating", function() {
+        expect(browser.queryAll("#inventory table thead tr")).to.have.length(1);
+        expect(browser.queryAll("#inventory table thead tr th")).to.have.length(3);
+        expect(browser.text("#inventory .list-header.id-header")).to.equal("ID");
+        expect(browser.text("#inventory .list-header.name-header")).to.equal("Name");
+        expect(browser.text("#inventory .list-header.rating-header")).to.equal("Rating");
+    });
 
     it("should have a list of items", function() {
         expect(browser.queryAll("#inventory table tbody tr")).to.have.length(6);
