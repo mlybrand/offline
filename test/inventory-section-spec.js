@@ -55,7 +55,11 @@ describe("Inventory Section", function() {
                 });
             });
 
-            it("should be a hyperlink");
+            it("should be a hyperlink", function() {
+                items.forEach(function(item) {
+                    expect(browser.queryAll("td.id a", item)).to.have.length(1);
+                });
+            });
 
             it("should link to a function to call the detail with itself");
         });
