@@ -1,13 +1,15 @@
 var expect = require('chai').expect,
     Browser = require('zombie'),
-    app = require('../lib/app');
+    app = require('../lib/app'),
+    port = 3001,
+    url = "http://localhost:" + port;
 
 describe("SPA", function() {
     var server,
         browser = new Browser();
 
     before(function() {
-        server = app.listen(3001);
+        server = app.listen(port);
     });
 
     after(function() {
@@ -15,7 +17,7 @@ describe("SPA", function() {
     });
 
     beforeEach(function() {
-        return browser.visit("http://localhost:3001");
+        return browser.visit(url);
     });
 
     it("should have a header section with the site title", function() {
