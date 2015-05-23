@@ -39,4 +39,12 @@ describe("SPA", function() {
         expect(browser.queryAll('footer')).to.have.length(1);
         expect(browser.text('footer p')).to.equal('© 2015 Mark Lybrand');
     });
+
+    describe("Selected Inventory Item", function() {
+
+        it("should be unselected initially", function() {
+            expect(browser.text("#active-item .panel-title")).to.equal("No Item Selected");
+            expect(browser.text("#active-item .panel-body")).to.equal("Please select an item from the list on the left.");
+        });
+    });
 });
