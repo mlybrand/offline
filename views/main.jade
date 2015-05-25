@@ -33,7 +33,7 @@ html(lang="en")
                 .col-md-6
                     #active-item.panel.panel-default(data-bind='with: activeItem')
                         .panel-heading
-                            h3.panel-title No Item Selected
+                            h3.panel-title(data-bind='text: $root.activeItemTitle')
                         .panel-body
                             form
                                 .form-group

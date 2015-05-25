@@ -6,6 +6,9 @@ $(function () {
             name: ko.observable(),
             rating: ko.observable()
         };
+        var activeItemTitle = ko.computed(function() {
+            return this.id() || 'No Item Selected';
+        }, activeItem);
         var selectItem = function() {
             activeItem.id(this.id());
             activeItem.name(this.name());
@@ -14,6 +17,7 @@ $(function () {
         return {
             inventory: inventory,
             activeItem: activeItem,
+            activeItemTitle: activeItemTitle,
             selectItem: selectItem
         };
     }();
