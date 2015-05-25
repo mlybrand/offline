@@ -24,37 +24,12 @@ html(lang="en")
                                         th.list-header.id-header ID
                                         th.list-header.name-header Name
                                         th.list-header.rating-header Rating
-                                tbody
+                                tbody(data-bind='foreach: inventory')
                                     tr
                                         td.id
-                                            a 0000001
-                                        td.name desk
-                                        td.rating 9
-                                    tr
-                                        td.id
-                                            a 0000002
-                                        td.name monitor
-                                        td.rating 8
-                                    tr
-                                        td.id
-                                            a 0000003
-                                        td.name printer
-                                        td.rating 4
-                                    tr
-                                        td.id
-                                            a 0000004
-                                        td.name telephone
-                                        td.rating 4
-                                    tr
-                                        td.id
-                                            a 0000005
-                                        td.name mouse
-                                        td.rating 10
-                                    tr
-                                        td.id
-                                            a 0000006
-                                        td.name keyboard
-                                        td.rating 1
+                                            a(data-bind='text: id')
+                                        td.name(data-bind='text: name')
+                                        td.rating(data-bind='text: rating')
                 .col-md-6
                     #active-item.panel.panel-default
                         .panel-heading

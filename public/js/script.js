@@ -35,5 +35,5 @@ $(function() {
     };
 
     var vm = ko.mapping.fromJS(data);
-    console.log(vm.inventory()[0].id());
+    ko.applyBindings(vm);
 });
