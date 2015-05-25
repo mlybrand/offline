@@ -27,14 +27,24 @@ html(lang="en")
                                 tbody(data-bind='foreach: inventory')
                                     tr
                                         td.id
-                                            a(data-bind='text: id')
+                                            a(href='#', data-bind='text: id, event: { click: $root.selectItem }')
                                         td.name(data-bind='text: name')
                                         td.rating(data-bind='text: rating')
                 .col-md-6
-                    #active-item.panel.panel-default
+                    #active-item.panel.panel-default(data-bind='with: activeItem')
                         .panel-heading
                             h3.panel-title No Item Selected
-                        .panel-body Please select an item from the list on the left.
+                        .panel-body
+                            form
+                                .form-group
+                                    label.control-label(for='active-id') ID:
+                                    p#active-id.form-control-static(data-bind='text: id')
+                                .form-group
+                                    label.control-label(for='active-name') Name:
+                                    input#active-name.form-control(data-bind='value: name')
+                                .form-group
+                                    label.control-label(for='active-rating') Rating:
+                                    input#active-rating.form-control(data-bind='value: rating')
 
         footer.footer
             .container

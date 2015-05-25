@@ -1,7 +1,22 @@
 $(function () {
-    var vm = {
-        inventory: ko.observableArray([])
-    };
+    var vm = function() {
+        var inventory = ko.observableArray([]);
+        var activeItem = {
+            id: ko.observable(),
+            name: ko.observable(),
+            rating: ko.observable()
+        };
+        var selectItem = function() {
+            activeItem.id(this.id());
+            activeItem.name(this.name());
+            activeItem.rating(this.rating());
+        };
+        return {
+            inventory: inventory,
+            activeItem: activeItem,
+            selectItem: selectItem
+        };
+    }();
 
     var data = {
         inventory: [
