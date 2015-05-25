@@ -1,5 +1,9 @@
-$(function() {
-      var data = {
+$(function () {
+    var vm = {
+        inventory: ko.observableArray([])
+    };
+
+    var data = {
         inventory: [
             {
                 id: '0000001',
@@ -34,6 +38,6 @@ $(function() {
         ]
     };
 
-    var vm = ko.mapping.fromJS(data);
+    ko.mapping.fromJS(data, {}, vm);
     ko.applyBindings(vm);
 });
