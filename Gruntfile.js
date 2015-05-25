@@ -14,7 +14,8 @@ grunt.initConfig({
             files: [
                 { cwd: 'bower_components/bootstrap/dist/', src: '**/*', dest: 'public/vendor', expand: true },
                 { cwd: 'bower_components/jquery/dist/', src: '*', dest: 'public/vendor/js', expand: true },
-                { cwd: 'bower_components/knockoutjs/dist/', src: 'knockout.js', dest: 'public/vendor/js', expand: true }
+                { cwd: 'bower_components/knockoutjs/dist/', src: 'knockout.js', dest: 'public/vendor/js', expand: true },
+                { cwd: 'bower_components/knockout-mapping/', src: 'knockout.mapping.js', dest: 'public/vendor/js', expand: true }
             ]
         }
     },
