@@ -45,8 +45,7 @@ html(lang="en")
                                 .form-group
                                     label.control-label(for='active-rating') Rating:
                                     input#active-rating.form-control(data-bind='value: rating, event: { change: $root.makeDirty }')
-                                div(data-bind='text: dirty')
-                                button.btn.btn-success.btn-block(data-bind='enable: dirty') Update
+                                button.btn.btn-success.btn-block(data-bind='enable: dirty, click: $root.updateEntry') Update
 
         footer.footer
             .container
@@ -55,4 +54,5 @@ html(lang="en")
         script(src='vendor/js/jquery.js')
         script(src='vendor/js/knockout.js')
         script(src='vendor/js/knockout.mapping.js')
+        script(src='vendor/js/lodash.min.js')
         script(src='js/script.js')

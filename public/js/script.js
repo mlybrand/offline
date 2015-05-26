@@ -18,13 +18,23 @@ $(function () {
         };
         var makeDirty = function() {
             activeItem.dirty(true);
-        }
+        };
+        var updateEntry = function() {
+            var id = activeItem.id(),
+                match = _.find(inventory(), function(o) {
+                    return o.id() === id;
+                });
+            match.name(activeItem.name());
+            match.rating(activeItem.rating());
+            activeItem.dirty(false);
+        };
         return {
             inventory: inventory,
             activeItem: activeItem,
             activeItemTitle: activeItemTitle,
             selectItem: selectItem,
-            makeDirty: makeDirty
+            makeDirty: makeDirty,
+            updateEntry: updateEntry
         };
     }();
 
