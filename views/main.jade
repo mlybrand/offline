@@ -27,7 +27,7 @@ html(lang="en")
                                 tbody(data-bind='foreach: inventory')
                                     tr
                                         td.id
-                                            a(href='#', data-bind='text: id, event: { click: $root.selectItem }')
+                                            a(href='#', data-bind='text: id, click: $root.selectItem')
                                         td.name(data-bind='text: name')
                                         td.rating(data-bind='text: rating')
                 .col-md-6
@@ -41,10 +41,12 @@ html(lang="en")
                                     p#active-id.form-control-static(data-bind='text: id')
                                 .form-group
                                     label.control-label(for='active-name') Name:
-                                    input#active-name.form-control(data-bind='value: name')
+                                    input#active-name.form-control(data-bind='value: name, event: { change: $root.makeDirty }')
                                 .form-group
                                     label.control-label(for='active-rating') Rating:
-                                    input#active-rating.form-control(data-bind='value: rating')
+                                    input#active-rating.form-control(data-bind='value: rating, event: { change: $root.makeDirty }')
+                                div(data-bind='text: dirty')
+                                button.btn.btn-success.btn-block(data-bind='enable: dirty') Update
 
         footer.footer
             .container

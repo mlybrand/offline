@@ -4,7 +4,8 @@ $(function () {
         var activeItem = {
             id: ko.observable(),
             name: ko.observable(),
-            rating: ko.observable()
+            rating: ko.observable(),
+            dirty: ko.observable(false)
         };
         var activeItemTitle = ko.computed(function() {
             return this.id() || 'No Item Selected';
@@ -13,12 +14,17 @@ $(function () {
             activeItem.id(this.id());
             activeItem.name(this.name());
             activeItem.rating(this.rating());
+            activeItem.dirty(false);
         };
+        var makeDirty = function() {
+            activeItem.dirty(true);
+        }
         return {
             inventory: inventory,
             activeItem: activeItem,
             activeItemTitle: activeItemTitle,
-            selectItem: selectItem
+            selectItem: selectItem,
+            makeDirty: makeDirty
         };
     }();
 
