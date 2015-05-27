@@ -64,6 +64,15 @@ $(function () {
             match.rating(activeItem.rating());
             resetForm();
         };
+        var deleteItem = function() {
+            var self = this;
+            if (confirm("Do you really want to delete item " + self.id())) {
+                var idx = _.findIndex(inventory(), function(item) {
+                    return item.id() === self.id();
+                });
+                inventory.splice(idx, 1);
+            }
+        };
         return {
             inventory: inventory,
             activeItem: activeItem,
@@ -73,7 +82,8 @@ $(function () {
             addNewItem: addNewItem,
             selectItem: selectItem,
             makeDirty: makeDirty,
-            updateEntry: updateEntry
+            updateEntry: updateEntry,
+            deleteItem: deleteItem
         };
     }();
 

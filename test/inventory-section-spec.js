@@ -21,12 +21,13 @@ describe("Inventory Section", function() {
         return browser.visit(url);
     });
 
-    it("should have headers for ID, name and rating", function() {
+    it("should have headers for ID, name, rating and a blank one for delete", function() {
         expect(browser.queryAll("#inventory table thead tr")).to.have.length(1);
-        expect(browser.queryAll("#inventory table thead tr th")).to.have.length(3);
+        expect(browser.queryAll("#inventory table thead tr th")).to.have.length(4);
         expect(browser.text("#inventory .list-header.id-header")).to.equal("ID");
         expect(browser.text("#inventory .list-header.name-header")).to.equal("Name");
         expect(browser.text("#inventory .list-header.rating-header")).to.equal("Rating");
+        expect(browser.text("#inventory .list-header.delete-header")).to.equal("");
     });
 
     it("should have a list of items", function() {

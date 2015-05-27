@@ -27,12 +27,16 @@ html(lang="en")
                                             th.list-header.id-header ID
                                             th.list-header.name-header Name
                                             th.list-header.rating-header Rating
+                                            th.list-header.delete-header
                                     tbody(data-bind='foreach: inventory')
                                         tr
                                             td.id
                                                 a(href='#', data-bind='text: id, click: $root.selectItem')
                                             td.name(data-bind='text: name')
                                             td.rating(data-bind='text: rating')
+                                            td
+                                                button.btn.btn-danger.btn-sm(data-bind="click: $root.deleteItem")
+                                                    span.glyphicon.glyphicon-remove
                 .col-md-6
                     #active-item.panel.panel-default(data-bind='with: activeItem')
                         .panel-heading
