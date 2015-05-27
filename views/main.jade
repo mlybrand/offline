@@ -48,10 +48,10 @@ html(lang="en")
                                 .form-group
                                     label.control-label(for='active-rating') Rating:
                                     input#active-rating.form-control(data-bind='value: rating, enable: $root.enableForm, event: { change: $root.makeDirty }')
-                                button.btn.btn-success.col-md-5(data-bind='enable: dirty, click: $root.updateEntry')
-                                    | Update&nbsp;
-                                    span(data-bind='text: id')
-                                button.btn.btn-danger.col-md-5.col-md-offset-2(data-bind='enable: $root.enableForm, click: $root.resetForm') Cancel
+                            button.btn.btn-success.col-md-5(data-bind='enable: dirty, click: $root.updateEntry, clickBubble: false')
+                                | Update&nbsp;
+                                span(data-bind='text: id')
+                            button.btn.btn-danger.col-md-5.col-md-offset-2(data-bind='enable: $root.enableForm, click: $root.resetForm') Cancel
 
         footer.footer
             .container

@@ -13,7 +13,7 @@ $(function () {
         var enableForm = ko.computed(function() {
             return (this.id() ? true : false);
         }, activeItem);
-        var resetForm = function() {
+        var resetForm = function(e) {
             activeItem.id("");
             activeItem.name("");
             activeItem.rating("");
@@ -48,6 +48,7 @@ $(function () {
             activeItem: activeItem,
             activeItemTitle: activeItemTitle,
             enableForm: enableForm,
+            resetForm: resetForm,
             addNewItem: addNewItem,
             selectItem: selectItem,
             makeDirty: makeDirty,
