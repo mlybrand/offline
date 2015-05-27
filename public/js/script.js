@@ -10,6 +10,9 @@ $(function () {
         var activeItemTitle = ko.computed(function() {
             return this.id() || 'No Item Selected';
         }, activeItem);
+        var enableFormField = ko.computed(function() {
+            return (this.id() ? true : false);
+        }, activeItem);
         var selectItem = function() {
             activeItem.id(this.id());
             activeItem.name(this.name());
@@ -32,6 +35,7 @@ $(function () {
             inventory: inventory,
             activeItem: activeItem,
             activeItemTitle: activeItemTitle,
+            enableFormField: enableFormField,
             selectItem: selectItem,
             makeDirty: makeDirty,
             updateEntry: updateEntry

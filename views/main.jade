@@ -41,10 +41,10 @@ html(lang="en")
                                     p#active-id.form-control-static(data-bind='text: id')
                                 .form-group
                                     label.control-label(for='active-name') Name:
-                                    input#active-name.form-control(data-bind='value: name, event: { change: $root.makeDirty }')
+                                    input#active-name.form-control(data-bind='enable: $root.enableFormField, value: name,  event: { change: $root.makeDirty }')
                                 .form-group
                                     label.control-label(for='active-rating') Rating:
-                                    input#active-rating.form-control(data-bind='value: rating, event: { change: $root.makeDirty }')
+                                    input#active-rating.form-control(data-bind='value: rating, enable: $root.enableFormField, event: { change: $root.makeDirty }')
                                 button.btn.btn-success.btn-block(data-bind='enable: dirty, click: $root.updateEntry') Update
 
         footer.footer
