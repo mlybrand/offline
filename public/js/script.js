@@ -10,9 +10,21 @@ $(function () {
         var activeItemTitle = ko.computed(function() {
             return this.id() || 'No Item Selected';
         }, activeItem);
-        var enableFormField = ko.computed(function() {
+        var enableForm = ko.computed(function() {
             return (this.id() ? true : false);
         }, activeItem);
+        var resetForm = function() {
+            activeItem.id("");
+            activeItem.name("");
+            activeItem.rating("");
+            activeItem.dirty(false);
+        };
+        var addNewItem = function() {
+            activeItem.id("New Item");
+            activeItem.name("");
+            activeItem.rating("");
+            activeItem.dirty(false);
+        };
         var selectItem = function() {
             activeItem.id(this.id());
             activeItem.name(this.name());
@@ -35,7 +47,8 @@ $(function () {
             inventory: inventory,
             activeItem: activeItem,
             activeItemTitle: activeItemTitle,
-            enableFormField: enableFormField,
+            enableForm: enableForm,
+            addNewItem: addNewItem,
             selectItem: selectItem,
             makeDirty: makeDirty,
             updateEntry: updateEntry

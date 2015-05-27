@@ -14,22 +14,25 @@ html(lang="en")
         .container
             .row
                 .col-md-6
-                    #inventory.panel.panel-default
-                        .panel-heading
-                            h3.panel-title Inventory
-                        .panel-body
-                            table.table.table-hover
-                                thead
-                                    tr
-                                        th.list-header.id-header ID
-                                        th.list-header.name-header Name
-                                        th.list-header.rating-header Rating
-                                tbody(data-bind='foreach: inventory')
-                                    tr
-                                        td.id
-                                            a(href='#', data-bind='text: id, click: $root.selectItem')
-                                        td.name(data-bind='text: name')
-                                        td.rating(data-bind='text: rating')
+                    .row
+                        button.btn.btn-success.col-md-6.col-md-offset-3.create-button(data-bind="click: $root.addNewItem") Add New Item
+                    .row
+                        #inventory.panel.panel-default
+                            .panel-heading
+                                h3.panel-title Inventory
+                            .panel-body
+                                table.table.table-hover
+                                    thead
+                                        tr
+                                            th.list-header.id-header ID
+                                            th.list-header.name-header Name
+                                            th.list-header.rating-header Rating
+                                    tbody(data-bind='foreach: inventory')
+                                        tr
+                                            td.id
+                                                a(href='#', data-bind='text: id, click: $root.selectItem')
+                                            td.name(data-bind='text: name')
+                                            td.rating(data-bind='text: rating')
                 .col-md-6
                     #active-item.panel.panel-default(data-bind='with: activeItem')
                         .panel-heading
@@ -41,11 +44,14 @@ html(lang="en")
                                     p#active-id.form-control-static(data-bind='text: id')
                                 .form-group
                                     label.control-label(for='active-name') Name:
-                                    input#active-name.form-control(data-bind='enable: $root.enableFormField, value: name,  event: { change: $root.makeDirty }')
+                                    input#active-name.form-control(data-bind='enable: $root.enableForm, value: name,  event: { change: $root.makeDirty }')
                                 .form-group
                                     label.control-label(for='active-rating') Rating:
-                                    input#active-rating.form-control(data-bind='value: rating, enable: $root.enableFormField, event: { change: $root.makeDirty }')
-                                button.btn.btn-success.btn-block(data-bind='enable: dirty, click: $root.updateEntry') Update
+                                    input#active-rating.form-control(data-bind='value: rating, enable: $root.enableForm, event: { change: $root.makeDirty }')
+                                button.btn.btn-success.col-md-5(data-bind='enable: dirty, click: $root.updateEntry')
+                                    | Update&nbsp;
+                                    span(data-bind='text: id')
+                                button.btn.btn-danger.col-md-5.col-md-offset-2(data-bind='enable: $root.enableForm, click: $root.resetForm') Cancel
 
         footer.footer
             .container
