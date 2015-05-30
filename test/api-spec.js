@@ -24,11 +24,21 @@ describe.only('API', function() {
                 .expect(200)
                 .expect(function(res){
                     if (!('inventory' in res.body)) {
-                        console.log('foo');
                         throw new Error('missing inventory');
                     }
                 })
                 .end(done);
+        });
+        describe("Inventory", function() {
+            it("should have at least one member", function(done) {
+                api.get('/items')
+                    .expect(function(res) {
+                        if (res.body.inventory.length <= 0) {
+                            throw new Error('no items in inventory');
+                        }
+                    })
+                    .end(done);
+            });
         });
     });
 });
