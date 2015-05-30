@@ -18,8 +18,17 @@ describe.only('API', function() {
     });
 
     describe('List', function() {
-        it('should return json', function(done) {
-            api.get('/items').expect('Content-Type', /json/).expect(200, done);
+        it('should return json with an inventory member', function(done) {
+            api.get('/items')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .expect(function(res){
+                    if (!('inventory' in res.body)) {
+                        console.log('foo');
+                        throw new Error('missing inventory');
+                    }
+                })
+                .end(done);
         });
     });
 });
