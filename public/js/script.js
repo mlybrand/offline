@@ -87,6 +87,18 @@ $(function () {
         };
     }();
 
+    $.ajax({
+        url: '/api/items'
+    })
+    .done(function() {
+        console.log('done');
+    })
+    .fail(function() {
+        console.log('fail');
+    })
+    .always(function() {
+        console.log('finally');
+    });
     var data = {
         inventory: [
             {
