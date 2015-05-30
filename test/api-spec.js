@@ -18,8 +18,8 @@ describe.only('API', function() {
     });
 
     describe('List', function() {
-        it('should return ok status when called', function(done) {
-            api.get('/items').expect(200, done);
+        it('should return json', function(done) {
+            api.get('/items').expect('Content-Type', /json/).expect(200, done);
         });
     });
 });
