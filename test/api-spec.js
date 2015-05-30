@@ -39,6 +39,20 @@ describe.only('API', function() {
                     })
                     .end(done);
             });
+            describe("Items", function() {
+                it("should have id, name and rating members", function(done) {
+                    api.get('/items')
+                        .expect(function(res) {
+                            var inventory = res.body.inventory;
+                            inventory.forEach(function(item) {
+                                if (!('id' in item)) throw new Error('no id');
+                                if (!('name' in item)) throw new Error('no name');
+                                if (!('rating' in item)) throw new Error('no rating');
+                            });
+                        })
+                        .end(done);
+                });
+            })
         });
     });
 });
