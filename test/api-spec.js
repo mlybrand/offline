@@ -6,7 +6,7 @@ var expect = require('chai').expect,
     supertest = require('supertest'),
     api = supertest(url + "/api");
 
-describe('API', function() {
+describe.only('API', function() {
     var server;
 
     before(function() {
