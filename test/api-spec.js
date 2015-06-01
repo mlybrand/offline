@@ -61,6 +61,7 @@ describe.only('API', function() {
             api.post('/items/new')
                 .send({id: 'New Item', name: 'Foo', rating: 5 })
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .end(done);
         });
     });
