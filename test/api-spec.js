@@ -57,11 +57,17 @@ describe.only('API', function() {
     });
 
     describe('Create', function() {
-        it('should be called with a new item and return an object with a status and the submitted item with a new item number', function(done) {
+        it('should be called with a new item and return an object with a status of ok and the submitted item with a new item number', function(done) {
             api.post('/items/new')
                 .send({id: 'New Item', name: 'Foo', rating: 5 })
                 .expect(200)
                 .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    if (!('status' in res.body)) throw new Error('no status');
+                    if (!('item' in res.body)) throw new Error('no iteml');
+                    if(res.body.status !== 'ok') throw new Error('status is not ok');
+                    if(!res.body.item.id.match(/^\d{7}$/)) throw new Error('id is malformed');
+                })
                 .end(done);
         });
     });
