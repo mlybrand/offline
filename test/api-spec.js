@@ -55,5 +55,17 @@ describe.only('API', function() {
             })
         });
     });
+
+    describe('Create', function() {
+        it('should be called with a new item and return an object with a status and the submitted item with a new item number');
+    });
+
+    describe('Update', function() {
+        it('should be called with an existing item and return an object with a status and the submitted item');
+    });
+
+    describe('Delete', function() {
+        it('should be called with an id number and return an object with a status and the deleted object');
+    });
 });
 
