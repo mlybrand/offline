@@ -67,6 +67,8 @@ describe.only('API', function() {
                     if (!('item' in res.body)) throw new Error('no iteml');
                     if(res.body.status !== 'ok') throw new Error('status is not ok');
                     if(!res.body.item.id.match(/^\d{7}$/)) throw new Error('id is malformed');
+                    if(res.body.item.name !== 'Foo') throw new Error('name is wrong');
+                    if(res.body.item.rating !== 5) throw new Error('rating is wrong');
                 })
                 .end(done);
         });
