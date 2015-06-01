@@ -57,7 +57,12 @@ describe.only('API', function() {
     });
 
     describe('Create', function() {
-        it('should be called with a new item and return an object with a status and the submitted item with a new item number');
+        it('should be called with a new item and return an object with a status and the submitted item with a new item number', function(done) {
+            api.post('/items/new')
+                .send({id: 'New Item', name: 'Foo', rating: 5 })
+                .expect(200)
+                .end(done);
+        });
     });
 
     describe('Update', function() {
