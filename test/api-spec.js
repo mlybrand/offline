@@ -64,7 +64,7 @@ describe.only('API', function() {
                 .expect('Content-Type', /json/)
                 .expect(function(res) {
                     if (!('status' in res.body)) throw new Error('no status');
-                    if (!('item' in res.body)) throw new Error('no iteml');
+                    if (!('item' in res.body)) throw new Error('no item');
                     if(res.body.status !== 'ok') throw new Error('status is not ok');
                     if(!res.body.item.id.match(/^\d{7}$/)) throw new Error('id is malformed');
                     if(res.body.item.name !== 'Foo') throw new Error('name is wrong');
@@ -83,6 +83,7 @@ describe.only('API', function() {
                 .expect(function(res) {
                     if(!('status' in res.body)) throw new Error('no status');
                     if(!('item' in res.body)) throw new Error('no item');
+                    if(res.body.status !== 'ok') throw new Error('status is not ok');
                     if(res.body.item.id !== '0000001') throw new Error('incorrect id');
                     if(res.body.item.name !== 'Foo') throw new Error('incorrect name');
                     if(res.body.item.rating !== 3) throw new Error('incorrect rating');
@@ -92,7 +93,20 @@ describe.only('API', function() {
     });
 
     describe('Delete', function() {
-        it('should be called with an id number and return an object with a status and the deleted object');
+        it('should be called with an id number and return an object with a status and the deleted object', function(done) {
+            api.post('/items/0000001/delete')
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    if(!('status' in res.body)) throw new Error('no status');
+                    if(!('item' in res.body)) throw new Error('no item');
+                    if(res.body.status !== 'ok') throw new Error('status is not ok');
+                    if(res.body.item.id !== '0000001') throw new Error('incorrect id');
+                    if(!('name' in res.body.item)) throw new Error('no name');
+                    if(!('rating' in res.body.item)) throw new Error('no rating');
+                })
+                .end(done);
+        });
     });
 });
 
