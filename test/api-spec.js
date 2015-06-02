@@ -6,7 +6,7 @@ var expect = require('chai').expect,
     supertest = require('supertest'),
     api = supertest(url + "/api");
 
-describe.only('API', function() {
+describe('API', function() {
     var server;
 
     before(function() {
@@ -56,7 +56,7 @@ describe.only('API', function() {
         });
     });
 
-    describe('Create', function() {
+    describe.only('Create', function() {
         it('should be called with a new item and return an object with a status of ok and the submitted item with a new item number', function(done) {
             api.post('/items/new')
                 .send({id: 'New Item', name: 'Foo', rating: 5 })

@@ -5,7 +5,7 @@ var expect = require('chai').expect,
     port = config.port,
     url = config.url;
 
-describe("SPA", function() {
+describe.skip("SPA", function() {
     var server,
         browser = new Browser();
 

@@ -1,5 +1,6 @@
 $(function () {
     var vm = function() {
+        var connected = true;
         var inventory = ko.observableArray([]);
         var activeItem = {
             id: ko.observable(),
@@ -35,13 +36,23 @@ $(function () {
             activeItem.dirty(true);
         };
         function generateNextId() {
-            var maxId = (_.max(inventory(), function(item) {
+            var itemWithMaxId = (_.max(inventory(), function(item) {
                 return item.id();
-            })).id(),
+            })),
+                maxId =  itemWithMaxId.id ? itemWithMaxId.id() : 0,
                 nextId = "0000000" +  (parseInt(maxId, 10) + 1);
             return nextId.substr(nextId.length - 7);
         }
-        function addEntry(item) {
+
+        /* CREATE */
+        var addEntry = function(item) {
+            // call local storage and update
+            // if connected call api
+            if (connected) {
+                console.log("connecting to API to create");
+            }
+            // update vm
+
             item.id(generateNextId());
             inventory.push({
                 id: ko.observable(item.id()),
@@ -50,7 +61,9 @@ $(function () {
                 dirty: ko.observable(false)
             });
             resetForm();
-        }
+        };
+
+        /* UPDATE */
         var updateEntry = function() {
             if (activeItem.id() === "New Item") {
                 addEntry(activeItem);
@@ -64,6 +77,8 @@ $(function () {
             match.rating(activeItem.rating());
             resetForm();
         };
+
+        /* DELETE */
         var deleteItem = function() {
             var self = this;
             if (confirm("Do you really want to delete item " + self.id())) {
@@ -73,6 +88,7 @@ $(function () {
                 inventory.splice(idx, 1);
             }
         };
+
         return {
             inventory: inventory,
             activeItem: activeItem,
