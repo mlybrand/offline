@@ -75,7 +75,17 @@ describe.only('API', function() {
     });
 
     describe('Update', function() {
-        it('should be called with an existing item and return an object with a status and the submitted item');
+        it('should be called with an existing item and return an object with a status and the submitted item', function(done) {
+            api.post('/items/0000001')
+                .send({id: '0000001', name: "Foo", rating: 3 })
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .expect(function(res) {
+                    if(!('status' in res.body)) throw new Error('no status');
+                    if(!('item' in res.body)) throw new Error('no item');
+                })
+                .end(done);
+        });
     });
 
     describe('Delete', function() {
