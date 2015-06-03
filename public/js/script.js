@@ -46,10 +46,29 @@ $(function () {
 
         /* CREATE */
         var addEntry = function(item) {
+            var obj = {
+                id: item.id(),
+                name: item.name(),
+                rating: item.rating()
+            };
             // call local storage and update
             // if connected call api
             if (connected) {
-                console.log("connecting to API to create");
+                $.ajax({
+                    url: '/api/items/new',
+                    method: 'POST',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json'
+                })
+                .done(function() {
+                    console.log('done');
+                })
+                .fail(function() {
+                    console.log('fail');
+                })
+                .always(function() {
+                    console.log('always');
+                });
             }
             // update vm
 
