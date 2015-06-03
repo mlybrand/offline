@@ -123,6 +123,22 @@ $(function () {
         var deleteItem = function() {
             var self = this;
             if (confirm("Do you really want to delete item " + self.id())) {
+                if (connected) {
+                    $.ajax({
+                        url: '/api/items/' + self.id() + '/delete',
+                        method: 'POST'
+                    })
+                    .done(function() {
+                        console.log('done');
+                    })
+                    .fail(function() {
+                        console.log('fail');
+                    })
+                    .always(function() {
+                        console.log('always');
+                    });
+                }
+
                 var idx = _.findIndex(inventory(), function(item) {
                     return item.id() === self.id();
                 });
