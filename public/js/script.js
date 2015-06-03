@@ -88,6 +88,28 @@ $(function () {
                 addEntry(activeItem);
                 return;
             }
+            var obj = {
+                id: activeItem.id(),
+                name: activeItem.name(),
+                rating: activeItem.rating()
+            };
+            if (connected) {
+                $.ajax({
+                    url: '/api/items/' +  obj.id,
+                    method: 'POST',
+                    data: JSON.stringify(obj),
+                    contentType: 'application/json'
+                })
+                .done(function() {
+                    console.log('done');
+                })
+                .fail(function() {
+                    console.log('fail');
+                })
+                .always(function() {
+                    console.log('always');
+                });
+            }
             var id = activeItem.id(),
                 match = _.find(inventory(), function(o) {
                     return o.id() === id;
