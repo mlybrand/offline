@@ -5,7 +5,7 @@ var expect = require('chai').expect,
     port = config.port,
     url = config.url;
 
-describe("Inventory Section", function() {
+describe.skip("Inventory Section", function() {
     var server,
         browser = new Browser();
 

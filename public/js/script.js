@@ -123,21 +123,23 @@ $(function () {
         var deleteItem = function() {
             var self = this;
             if (confirm("Do you really want to delete item " + self.id())) {
-                if (connected) {
-                    $.ajax({
-                        url: '/api/items/' + self.id() + '/delete',
-                        method: 'POST'
-                    })
-                    .done(function() {
-                        console.log('done');
-                    })
-                    .fail(function() {
-                        console.log('fail');
-                    })
-                    .always(function() {
-                        console.log('always');
-                    });
-                }
+                checkOnline().always(function(data) {
+                    if (data && data.connected) {
+                        $.ajax({
+                            url: '/api/items/' + self.id() + '/delete',
+                            method: 'POST'
+                        })
+                            .done(function() {
+                                console.log('done');
+                            })
+                            .fail(function() {
+                                console.log('fail');
+                            })
+                            .always(function() {
+                                console.log('always');
+                            });
+                    }
+                });
 
                 var idx = _.findIndex(inventory(), function(item) {
                     return item.id() === self.id();
@@ -160,12 +162,24 @@ $(function () {
         };
     }();
 
-    $.ajax({
-        url: '/api/items'
-    })
-    .done(function(data) {
-        ko.mapping.fromJS(data, {}, vm);
-        ko.applyBindings(vm);
+    checkOnline().always(function(check) {
+        if (check && check.connected) {
+            $.ajax({
+                url: '/api/items'
+            })
+            .done(function(data) {
+                ko.mapping.fromJS(data, {}, vm);
+                ko.applyBindings(vm);
+            });
+        } else {
+            console.log('not connected');
+        }
     });
+
+    function checkOnline() {
+        return $.ajax({
+            url: '/api/connect'
+        });
+    }
 
 });

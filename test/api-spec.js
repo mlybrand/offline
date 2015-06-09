@@ -56,7 +56,7 @@ describe('API', function() {
         });
     });
 
-    describe.only('Create', function() {
+    describe('Create', function() {
         it('should be called with a new item and return an object with a status of ok and the submitted item with a new item number', function(done) {
             api.post('/items/new')
                 .send({id: 'New Item', name: 'Foo', rating: 5 })

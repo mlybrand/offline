@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# ver 0.3
+
+CACHE:
+/favicon.ico
+/vendor/css/bootstrap.min.css
+/vendor/fonts/glyphicons-halflings-regular.woff2
+/vendor/fonts/glyphicons-halflings-regular.woff
+/vendor/fonts/glyphicons-halflings-regular.ttf
+/css/styles.css
+/vendor/js/jquery.js
+/vendor/js/knockout.js
+/vendor/js/knockout.mapping.js
+/vendor/js/lodash.min.js
+/js/script.js
+
+NETWORK:
+*
