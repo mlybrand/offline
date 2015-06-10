@@ -1,4 +1,19 @@
 $(function () {
+    var db;
+    var openDb = function() {
+        var request = indexedDB.open('inventory', 1);
+        request.onsuccess = function(e) {
+            db = e.target.result;
+        };
+        request.onupgradeneeded = function(e) {
+            db = e.target.result;
+            db.createObjectStore('items', {
+                keyPath: 'id'
+            });
+        };
+    };
+    openDb();
+
     var vm = function() {
         var inventory = ko.observableArray([]);
         var activeItem = {
@@ -60,19 +75,17 @@ $(function () {
                         data: JSON.stringify(obj),
                         contentType: 'application/json'
                     })
-                        .done(function() {
-                            console.log('done');
-                        })
-                        .fail(function() {
-                            console.log('fail');
-                        })
-                        .always(function() {
-                            console.log('always');
-                        });
+                    .done(function() {
+                        console.log('done');
+                    })
+                    .fail(function() {
+                        console.log('fail');
+                    })
+                    .always(function() {
+                        console.log('always');
+                    });
                 }
-
             });
-            // update vm
 
             item.id(generateNextId());
             inventory.push({
@@ -172,6 +185,12 @@ $(function () {
                 url: '/api/items'
             })
             .done(function(data) {
+                var tx = db.transaction(['items'], 'readwrite'),
+                    objectStore = tx.objectStore('items');
+                objectStore.clear();
+                data.inventory.forEach(function(item) {
+                    objectStore.add(item);
+                });
                 ko.mapping.fromJS(data, {}, vm);
                 ko.applyBindings(vm);
             });
