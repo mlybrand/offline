@@ -1,6 +1,5 @@
 $(function () {
     var vm = function() {
-        var connected = true;
         var inventory = ko.observableArray([]);
         var activeItem = {
             id: ko.observable(),
@@ -53,23 +52,26 @@ $(function () {
             };
             // call local storage and update
             // if connected call api
-            if (connected) {
-                $.ajax({
-                    url: '/api/items/new',
-                    method: 'POST',
-                    data: JSON.stringify(obj),
-                    contentType: 'application/json'
-                })
-                .done(function() {
-                    console.log('done');
-                })
-                .fail(function() {
-                    console.log('fail');
-                })
-                .always(function() {
-                    console.log('always');
-                });
-            }
+            checkOnline().always(function(check) {
+                if (check && check.connected) {
+                    $.ajax({
+                        url: '/api/items/new',
+                        method: 'POST',
+                        data: JSON.stringify(obj),
+                        contentType: 'application/json'
+                    })
+                        .done(function() {
+                            console.log('done');
+                        })
+                        .fail(function() {
+                            console.log('fail');
+                        })
+                        .always(function() {
+                            console.log('always');
+                        });
+                }
+
+            });
             // update vm
 
             item.id(generateNextId());
@@ -93,23 +95,25 @@ $(function () {
                 name: activeItem.name(),
                 rating: activeItem.rating()
             };
-            if (connected) {
-                $.ajax({
-                    url: '/api/items/' +  obj.id,
-                    method: 'POST',
-                    data: JSON.stringify(obj),
-                    contentType: 'application/json'
-                })
-                .done(function() {
-                    console.log('done');
-                })
-                .fail(function() {
-                    console.log('fail');
-                })
-                .always(function() {
-                    console.log('always');
-                });
-            }
+            checkOnline().always(function(check) {
+                if (check && check.connected) {
+                    $.ajax({
+                        url: '/api/items/' +  obj.id,
+                        method: 'POST',
+                        data: JSON.stringify(obj),
+                        contentType: 'application/json'
+                    })
+                        .done(function() {
+                            console.log('done');
+                        })
+                        .fail(function() {
+                            console.log('fail');
+                        })
+                        .always(function() {
+                            console.log('always');
+                        });
+                }
+            });
             var id = activeItem.id(),
                 match = _.find(inventory(), function(o) {
                     return o.id() === id;
@@ -123,8 +127,8 @@ $(function () {
         var deleteItem = function() {
             var self = this;
             if (confirm("Do you really want to delete item " + self.id())) {
-                checkOnline().always(function(data) {
-                    if (data && data.connected) {
+                checkOnline().always(function(check) {
+                    if (check && check.connected) {
                         $.ajax({
                             url: '/api/items/' + self.id() + '/delete',
                             method: 'POST'
