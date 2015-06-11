@@ -75,15 +75,11 @@ $(function () {
                         data: JSON.stringify(obj),
                         contentType: 'application/json'
                     })
-                    .done(function() {
-                        console.log('done');
-                    })
-                    .fail(function() {
-                        console.log('fail');
-                    })
-                    .always(function() {
-                        console.log('always');
+                    .always(function(data) {
+                        console.log(data);
                     });
+                } else {
+                    console.log('not connected');
                 }
             });
 
@@ -139,7 +135,7 @@ $(function () {
         /* DELETE */
         var deleteItem = function() {
             var self = this;
-            if (confirm("Do you really want to delete item " + self.id())) {
+            if (confirm('Do you really want to delete item' + self.id())) {
                 checkOnline().always(function(check) {
                     if (check && check.connected) {
                         $.ajax({
@@ -180,48 +176,30 @@ $(function () {
     }();
 
     checkOnline().always(function(check) {
-        if (check && check.connected) {
-            $.ajax({
-                url: '/api/items'
-            })
-            .done(function(data) {
-                var tx = db.transaction(['items'], 'readwrite'),
-                    objectStore = tx.objectStore('items');
-                objectStore.clear();
-                data.inventory.forEach(function(item) {
-                    objectStore.add(item);
-                });
-            })
-            .always(getAllItems);
-        } else {
-            console.log('not connected');
-            setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
-        }
-
-        function getAllItems() {
-            console.log(db);
-            var read = db.transaction(['items'], 'readonly'),
-                objectStore = read.objectStore('items'),
-                localData = { inventory: [] };
-
-            objectStore.openCursor().onsuccess = function(e) {
-                var cursor = e.target.result;
-                if (cursor === null) { return; }
-                localData.inventory.push({
-                    id: cursor.value.id,
-                    name: cursor.value.name,
-                    rating: cursor.value.rating
-                });
-                cursor.continue();
-            };
-            read.oncomplete = function() {
-                ko.mapping.fromJS(localData, {}, vm);
-                ko.applyBindings(vm);
-            };
-
-        }
-
+        setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
     });
+    function getAllItems() {
+        var read = db.transaction(['items'], 'readonly'),
+            objectStore = read.objectStore('items'),
+            localData = { inventory: [] };
+
+        objectStore.openCursor().onsuccess = function(e) {
+            var cursor = e.target.result;
+            if (cursor === null) { return; }
+            localData.inventory.push({
+                id: cursor.value.id,
+                name: cursor.value.name,
+                rating: cursor.value.rating
+            });
+            cursor.continue();
+        };
+        read.oncomplete = function() {
+            ko.mapping.fromJS(localData, {}, vm);
+            ko.applyBindings(vm);
+        };
+
+    }
+
     function checkOnline() {
         var ret = $.ajax({
             url: '/api/connect'
@@ -240,7 +218,17 @@ $(function () {
     }
 
     function syncDatabase() {
-        console.log('syncing...');
+        $.ajax({
+            url: '/api/items'
+        })
+            .done(function(data) {
+                var tx = db.transaction(['items'], 'readwrite'),
+                    objectStore = tx.objectStore('items');
+                objectStore.clear();
+                data.inventory.forEach(function(item) {
+                    objectStore.add(item);
+                });
+            });
     }
 
 });
