@@ -222,11 +222,25 @@ $(function () {
         }
 
     });
-
     function checkOnline() {
-        return $.ajax({
+        var ret = $.ajax({
             url: '/api/connect'
         });
+        ret.done(function() {
+            if (!!localStorage.getItem('wasOffline')) {
+                syncDatabase();
+                localStorage.removeItem('wasOffline');
+            }
+        });
+        ret.error(function() {
+            localStorage.setItem('wasOffline', 'true');;
+        });
+
+        return ret;
+    }
+
+    function syncDatabase() {
+        console.log('syncing...');
     }
 
 });
