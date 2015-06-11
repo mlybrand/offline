@@ -1,4 +1,5 @@
 $(function () {
+    console.log(ASQ);
     var db;
     var openDb = function() {
         var request = indexedDB.open('inventory', 1);
@@ -184,6 +185,16 @@ $(function () {
             setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
         //});
     });
+
+    ASQ()
+        .then(function(done) {
+            console.log("i am first");
+            done();
+        })
+        .then(function() {
+            console.log("i am second");
+        });
+
     function getAllItems() {
         var read = db.transaction(['items'], 'readonly'),
             objectStore = read.objectStore('items'),

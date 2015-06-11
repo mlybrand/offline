@@ -17,8 +17,7 @@
     "bootstrap": "~3.3.4",
     "knockoutjs": "~3.3.0",
     "knockout-mapping": "~2.4.1",
-    "lodash": "~3.9.3",
-    "async": "~1.2.1"
+    "lodash": "~3.9.3"
   },
   "devDependencies": {}
 }
