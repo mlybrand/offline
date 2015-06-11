@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# ver 0.4
+# ver 0.8
 
 CACHE:
 /favicon.ico
@@ -11,6 +11,7 @@ CACHE:
 /vendor/js/jquery.js
 /vendor/js/knockout.js
 /vendor/js/knockout.mapping.js
+/vendor/js/async.js
 /vendor/js/lodash.min.js
 /js/script.js
 

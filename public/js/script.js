@@ -175,8 +175,14 @@ $(function () {
         };
     }();
 
+    // what I really need is something like checkOnline().then(syncDatabase).finally(function(){...
+    // if checkonline is false or if it is true but we are not coming from an offline state
+    // then sync does nothing, otherwise it should sync
     checkOnline().always(function(check) {
-        setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
+        console.log(check);
+        //syncDatabase().always(function() {
+            setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
+        //});
     });
     function getAllItems() {
         var read = db.transaction(['items'], 'readonly'),
@@ -225,6 +231,7 @@ $(function () {
                 var tx = db.transaction(['items'], 'readwrite'),
                     objectStore = tx.objectStore('items');
                 objectStore.clear();
+
                 data.inventory.forEach(function(item) {
                     objectStore.add(item);
                 });
