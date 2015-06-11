@@ -191,12 +191,36 @@ $(function () {
                 data.inventory.forEach(function(item) {
                     objectStore.add(item);
                 });
-                ko.mapping.fromJS(data, {}, vm);
-                ko.applyBindings(vm);
-            });
+            })
+            .always(getAllItems);
         } else {
             console.log('not connected');
+            setTimeout(getAllItems, 0); // HACK: doing this to get this on the queue after call to open db
         }
+
+        function getAllItems() {
+            console.log(db);
+            var read = db.transaction(['items'], 'readonly'),
+                objectStore = read.objectStore('items'),
+                localData = { inventory: [] };
+
+            objectStore.openCursor().onsuccess = function(e) {
+                var cursor = e.target.result;
+                if (cursor === null) { return; }
+                localData.inventory.push({
+                    id: cursor.value.id,
+                    name: cursor.value.name,
+                    rating: cursor.value.rating
+                });
+                cursor.continue();
+            };
+            read.oncomplete = function() {
+                ko.mapping.fromJS(localData, {}, vm);
+                ko.applyBindings(vm);
+            };
+
+        }
+
     });
 
     function checkOnline() {
