@@ -189,9 +189,12 @@ $(function () {
     ASQ()
         .then(function(done) {
             console.log("i am first");
-            done();
+            done("foo");
         })
-        .then(function() {
+        .then(function(x, y, z) {
+            console.log(x);
+            console.log(y);
+            console.log(z);
             console.log("i am second");
         });
 
